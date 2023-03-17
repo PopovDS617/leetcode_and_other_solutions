@@ -1,5 +1,5 @@
 // returns the first deepest value
-const get = (key, object) => {
+const get1 = (key: string, object: Object) => {
   for (let i in object) {
     if (i === key) {
       return object[i];
@@ -10,7 +10,7 @@ const get = (key, object) => {
 };
 
 // returns key-value pair that is higher in the nesting hierarchy
-const get = (key, object) => {
+const get = (key: string, object: Object) => {
   if (typeof object !== 'object' || object === null) {
     return undefined;
   }
@@ -30,7 +30,7 @@ const get = (key, object) => {
 };
 
 // using stack to push and pop all the objects one-by-one
-const get = (key, object) => {
+const get2 = (key: string, object: Object) => {
   if (typeof object !== 'object' || object === null) {
     return undefined;
   }
@@ -40,7 +40,7 @@ const get = (key, object) => {
   while (stack.length > 0) {
     const currentObject = stack.pop();
 
-    if (key in currentObject) {
+    if (currentObject && key in currentObject) {
       return currentObject[key];
     }
 
