@@ -18,18 +18,34 @@ const tree: NodeItem = {
   ],
 };
 
-function getLeafItemNames(item: NodeItem) {
-  let node = item;
-
-  for (let curr in item) {
-    node = curr;
-
-    if (typeof node === 'array') {
-      for (let i = 0; i < node.length; i++) {}
-    }
+function getLeafItemNames(item ) {
+  const result=[]
+  
+  const stack=[]
+  
+  
+  stack.push(tree)
+  
+while(stack.length>0){
+  
+  const currentObj=stack.pop()
+  
+  if(currentObj.name){result.unshift(currentObj.name)}
+  if(Array.isArray(currentObj.children)){
+    
+    currentObj.children.forEach(item=>{
+      stack.push(item)
+    })
+    
   }
-
-  throw new Error('Not implemented');
+  else if(currentObj.children){stack.push(currentObj.children)}
+  
+  
+  
 }
+   
+  return result
+}
+ 
 
 // console.log(getLeafItemNames(tree)); // ['node_1.1', 'node_1.2.1', 'node_2.1', 'node_3']
