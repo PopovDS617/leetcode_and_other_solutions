@@ -1,25 +1,19 @@
 package main
 
 import (
-	"bufio"
+	"app/utils"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
 
-func checkData() {
+func CheckDate() {
 
-	n := genIterationsCount()
+	n := utils.GetIterationsCount()
 
-	scanner := bufio.NewScanner(os.Stdin)
+	inputData := make([]string, n)
 
-	var inputData = make([]string, n)
-
-	for i := 0; i < n; i++ {
-		scanner.Scan()
-		inputData[i] = scanner.Text()
-	}
+	utils.GetInput(n, inputData)
 
 	for i := range inputData {
 
@@ -46,12 +40,6 @@ func checkData() {
 		}
 
 	}
-}
-
-func genIterationsCount() int {
-	var n int
-	fmt.Scanln(&n)
-	return n
 }
 
 func isDateCorrect(d, m, y int) bool {
