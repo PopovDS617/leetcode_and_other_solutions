@@ -9,117 +9,46 @@ import (
 )
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	outWriter := bufio.NewWriter(os.Stdout)
+	defer outWriter.Flush()
 
-	numTests := GetIterationsCount()
-
-	res := [][]string{}
-
-	var resString string
-
-	for i := 0; i < numTests; i++ {
-		testRes := processTest()
-
-		res = append(res, testRes)
+	scanner.Scan()
+	n, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return
 	}
-
-	// f, err := os.Create("data.txt")
-
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// defer f.Close()
-
-	// _, err2 := f.WriteString("old falcon\n")
-
-	// if err2 != nil {
-	// 	log.Fatal(err2)
-	// }
-
-	// fmt.Println("done")
-
-	for i := range res {
-		for j := range res[i] {
-			// fmt.Print(res[i][j])
-			// fmt.Print("\n")
-
-			resString += res[i][j]
-			resString += "\n"
-			// f.WriteString(res[i][j] + "\n")
-		}
-		// f.WriteString("\n")
-		// fmt.Print("\n\r")
-		// fmt.Println()
-		resString += "\n"
-	}
-
-	resString += "\r"
-	fmt.Println(resString)
-
-}
-
-func processTest() []string {
-
-	numConstraints := GetIterationsCount()
-
-	constraints := make([]string, numConstraints)
-
-	scanner := bufio.NewReader(os.Stdin)
-	for i := 0; i < numConstraints; i++ {
-
-		line, _ := scanner.ReadString('\n')
-
-		constraints[i] = line
-	}
-
-	result := satisfyConstraints(constraints)
-
-	return result
-}
-
-func satisfyConstraints(constraints []string) []string {
 
 	min := 15
 	max := 30
-
-	result := []string{}
-
-	for _, constraint := range constraints {
-
-		parts := strings.Fields(constraint)
-		operator := parts[0]
-		value, _ := strconv.Atoi(parts[1])
-
-		switch operator {
-		case ">=":
-			if value < 15 || value > 30 || value > max {
-				min = -1
-				break
-			}
-			if value > min {
-				min = value
-			}
-
-		case "<=":
-			if value > 30 || value < 15 || value < min {
-				min = -1
-				break
-			}
-			if value < max {
-				max = value
-			}
-
+	for i := 0; i < n; i++ {
+		scanner.Scan()
+		nw, err := strconv.Atoi(scanner.Text())
+		if err != nil {
+			return
 		}
+		for j := 0; j < nw; j++ {
+			scanner.Scan()
+			numbersStr := strings.Split(scanner.Text(), " ")
+			s := numbersStr[0]
+			temp, ok := strconv.Atoi(numbersStr[1])
+			if ok != nil {
+				return
+			}
 
-		result = append(result, strconv.Itoa(min))
-
+			if s == "<=" && temp < max {
+				max = temp
+			} else if s == ">=" && temp > min {
+				min = temp
+			}
+			if min <= max {
+				fmt.Fprintf(outWriter, "%d\n", min)
+			} else {
+				fmt.Fprintf(outWriter, "%s\n", "-1")
+			}
+		}
+		fmt.Fprintf(outWriter, "\n")
+		min = 15
+		max = 30
 	}
-
-	return result
-}
-
-func GetIterationsCount() int {
-	var n int
-	fmt.Scanln(&n)
-	return n
 }
