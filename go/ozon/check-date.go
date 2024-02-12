@@ -1,7 +1,7 @@
-package main
+package ozon
 
 import (
-	"app/utils"
+	ozon "app/ozon/utils"
 	"fmt"
 	"strconv"
 	"strings"
@@ -9,11 +9,11 @@ import (
 
 func CheckDate() {
 
-	n := utils.GetIterationsCount()
+	n := ozon.GetIterationsCount()
 
 	inputData := make([]string, n)
 
-	utils.GetInput(n, inputData)
+	ozon.GetInput(n, inputData)
 
 	for i := range inputData {
 
@@ -63,12 +63,10 @@ func isDateCorrect(d, m, y int) bool {
 	}
 
 	if d <= 0 || d > 31 {
-
 		res = false
 	}
 
 	if m <= 0 || m > 12 {
-
 		res = false
 	}
 

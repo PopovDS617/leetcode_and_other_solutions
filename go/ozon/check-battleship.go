@@ -1,7 +1,7 @@
-package main
+package ozon
 
 import (
-	"app/utils"
+	ozon "app/ozon/utils"
 	"fmt"
 	"strconv"
 	"strings"
@@ -9,11 +9,11 @@ import (
 
 func CheckBattleship() {
 
-	n := utils.GetIterationsCount()
+	n := ozon.GetIterationsCount()
 
 	inputData := make([]string, n)
 
-	utils.GetInput(n, inputData)
+	ozon.GetInput(n, inputData)
 
 	for i := range inputData {
 

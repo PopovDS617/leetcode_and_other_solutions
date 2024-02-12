@@ -1,8 +1,20 @@
-package main
+package leetcode
 
-// var ints = []int{3, 5, -4, 8, 11, 1, -1, 6}
-// var target = 10
+func TwoSum(nums []int, target int) []int {
+	numMap := map[int]int{}
 
+	for i, num := range nums {
+		complement := target - num
+
+		if index, ok := numMap[complement]; ok {
+			return []int{index, i}
+		}
+		numMap[num] = i
+	}
+	return []int{}
+}
+
+// old solution
 func TwoNumberSum(ints []int, target int) []int {
 
 	var result []int
