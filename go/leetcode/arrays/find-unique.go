@@ -1,4 +1,4 @@
-package main
+package leetcode
 
 func FindUniq(arr []float32) float32 {
 
