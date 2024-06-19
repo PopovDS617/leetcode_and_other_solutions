@@ -2,15 +2,6 @@ package leetcode
 
 import "fmt"
 
-type List struct {
-	Head *Node
-}
-
-type Node struct {
-	Val  int
-	Next *Node
-}
-
 func (l *List) Add(value int) {
 	newNode := &Node{Val: value}
 
