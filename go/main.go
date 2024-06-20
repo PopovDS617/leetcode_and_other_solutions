@@ -1,23 +1,17 @@
 package main
 
 import (
-	leetcode "app/leetcode/linked_list"
+	leetcode "app/leetcode/arrays"
 	"fmt"
 )
 
 func main() {
-	node1 := &leetcode.Node{Val: 1}
-	node2 := &leetcode.Node{Val: 2}
-	node3 := &leetcode.Node{Val: 3}
-	node4 := &leetcode.Node{Val: 4}
-	node5 := &leetcode.Node{Val: 5}
-	node1.Next = node2
-	node2.Next = node3
-	node3.Next = node4
-	node4.Next = node5
-	fmt.Println("Original:")
-	leetcode.PrintLinkedList(node1)
-	reversedHead := leetcode.ReverseSinglyLinkedList(node1)
-	fmt.Println("Reversed:")
-	leetcode.PrintLinkedList(reversedHead)
+	a := []int{23, 3, 1, 2}
+	b := []int{6, 2, 4, 23}
+	// [2, 23]
+	fmt.Printf("%v\n", leetcode.Intersection(a, b))
+	a = []int{1, 1, 1}
+	b = []int{1, 1, 1, 1}
+	// [1, 1, 1]
+	fmt.Printf("%v\n", leetcode.Intersection(a, b))
 }
